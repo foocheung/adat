@@ -17,6 +17,6 @@ To access the app through a browser, visit [foocheung.shinyapps.io/adat](https:/
 # Source Code
 This web tool is an [open source](http://opensource.org) project, and the source code is available at [https://github.com/foocheung/adat](https://github.com/foocheung/adat)
 
-
-
+# License
+eAnalytics is licensed under the [Apache](http://www.apache.org/licenses/LICENSE-2.0) licence. &copy; Foo Cheung (2017)
 
