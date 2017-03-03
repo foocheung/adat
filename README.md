@@ -1,5 +1,4 @@
-# adat
-Web Tool For Navigating and Plotting ADAT files
+# Web Tool for Navigating and Plotting The SomaLogic ADAT files
 
 # Features
 * BoxPlots
