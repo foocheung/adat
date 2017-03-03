@@ -12,6 +12,7 @@ This web app is written using the shiny framework, a package from RStudio that c
 
 # Getting Started
 To access the app through a browser, visit [foocheung.shinyapps.io/adat](https://foocheung.shinyapps.io/adat/).
+Example data and video tutorials is available on the web app link shown above.
 
 # Source Code
 This web tool is an [open source](http://opensource.org) project, and the source code is available at [https://github.com/foocheung/adat](https://github.com/foocheung/adat)
