@@ -1,0 +1,44 @@
+Package: IRanges
+Title: Infrastructure for manipulating intervals on sequences
+Description: The package provides efficient low-level and highly reusable S4
+	classes for storing ranges of integers, RLE vectors (Run-Length
+	Encoding), and, more generally, data that can be organized
+	sequentially (formally defined as Vector objects), as well as views
+	on these Vector objects.
+	Efficient list-like classes are also provided for storing big
+	collections of instances of the basic classes. All classes in
+	the package use consistent naming and share the same rich and
+	consistent "Vector API" as much as possible.
+Version: 2.6.1
+Encoding: UTF-8
+Author: H. Pagès, P. Aboyoun and M. Lawrence
+Maintainer: Bioconductor Package Maintainer <maintainer@bioconductor.org>
+biocViews: Infrastructure, DataRepresentation
+Depends: R (>= 3.1.0), methods, utils, stats, BiocGenerics (>=
+        0.15.10), S4Vectors (>= 0.9.48)
+Imports: stats4
+LinkingTo: S4Vectors
+Suggests: XVector, GenomicRanges, GenomicFeatures, GenomicAlignments,
+        BSgenome.Celegans.UCSC.ce2, RUnit
+License: Artistic-2.0
+Collate: Vector-class-leftovers.R List-class-leftovers.R
+        AtomicList-class.R Ranges-class.R Ranges-comparison.R
+        IRanges-class.R IRanges-constructor.R IRanges-utils.R
+        Views-class.R Grouping-class.R CompressedList-class.R
+        CompressedList-comparison.R Rle-class-leftovers.R
+        RleViews-class.R RleViews-utils.R extractList.R seqapply.R
+        multisplit.R AtomicList-impl.R AtomicList-utils.R
+        ListGrouping-class.R Hits-class-leftovers.R DataFrame-utils.R
+        DataFrameList-class.R DataFrameList-utils.R RangesList-class.R
+        GappedRanges-class.R ViewsList-class.R RleViewsList-class.R
+        RleViewsList-utils.R MaskCollection-class.R RangedData-class.R
+        RDApplyParams-class.R RangedData-utils.R
+        CompressedHitsList-class.R NCList-class.R
+        RangedSelection-class.R read.Mask.R findOverlaps-methods.R
+        intra-range-methods.R inter-range-methods.R reverse-methods.R
+        coverage-methods.R slice-methods.R setops-methods.R
+        nearest-methods.R cbind-Rle-methods.R tile-methods.R
+        subsetting-internals.R zzz.R
+NeedsCompilation: yes
+Packaged: 2016-06-19 01:36:00 UTC; biocbuild
+Built: R 3.3.0; x86_64-apple-darwin13.4.0; 2016-06-19 15:07:48 UTC; unix
