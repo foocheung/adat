@@ -5,16 +5,17 @@ library(shinydashboard)
 library(ggplot2)
 library(dplyr)
 library(plotly)
-library(RMySQL)
+#library(RMySQL)
 library(d3heatmap)
 library(ggfortify)
 
 library(readr)
-library("genefilter")
+#library("genefilter")
 source("chooser.R")
 
 library(stats)
 library(shinyjs)
+library(DT)
 
 
 vidurl <-
