@@ -5,18 +5,21 @@ library(shinydashboard)
 library(ggplot2)
 library(dplyr)
 library(plotly)
-#library(RMySQL)
+##library(RMySQL)
 library(d3heatmap)
 library(ggfortify)
 
 library(readr)
-#library("genefilter")
+library("genefilter")
 source("chooser.R")
 
 library(stats)
 library(shinyjs)
-library(DT)
 
+#Version 0.01
+#Added more Comments
+
+# Help Pages url
 
 vidurl <-
   paste0("https://www.youtube.com/embed/GdhxiC2Nxfc?rel=0&amp;controls=0&amp;showinfo=")
@@ -33,7 +36,7 @@ ui <- dashboardPage(
     
     tags$li(
       class = "dropdown",
-      tags$a(href = "mailto:?Subject=https://foocheung.shinyapps.io/adat/ ",
+      tags$a(href = "mailto:?Subject=https://foocheung.shinyapps.io/soma_stats/ ",
              tags$img(height = "18px",
                       src = "email.png"))
     ),
@@ -42,7 +45,7 @@ ui <- dashboardPage(
     tags$li(
       class = "dropdown",
       tags$a(
-        href = "http://twitter.com/share?url=https://foocheung.shinyapps.io/adat/&text=Web Tool For Navigating and Plotting ADAT files",
+        href = "http://twitter.com/share?url=https://foocheung.shinyapps.io/soma_stats/&text=Web Tool For Navigating and Plotting ADAT files",
         target = "_blank",
         tags$img(height = "18px",
                  src = "twitter.png")
@@ -53,7 +56,7 @@ ui <- dashboardPage(
     tags$li(
       class = "dropdown",
       tags$a(
-        href = "http://www.facebook.com/sharer.php?u=https://foocheung.shinyapps.io/adat/",
+        href = "http://www.facebook.com/sharer.php?u=https://foocheung.shinyapps.io/soma_stats/",
         target = "_blank",
         tags$img(height = "18px",
                  src = "facebook.png")
@@ -64,7 +67,7 @@ ui <- dashboardPage(
     tags$li(
       class = "dropdown",
       tags$a(
-        href = "http://www.linkedin.com/shareArticle?mini=true&url=https://foocheung.shinyapps.io/adat/",
+        href = "http://www.linkedin.com/shareArticle?mini=true&url=https://foocheung.shinyapps.io/soma_stats/",
         target = "_blank",
         tags$img(height = "18px",
                  src = "linkedin.png")
@@ -74,14 +77,16 @@ ui <- dashboardPage(
   
   dashboardSidebar(
     sidebarMenu(
-      menuItem(
+      # ADAT
+        menuItem(
         "Upload ADAT file",
         tabName = "adat",
         icon = shiny::icon("file-text")
       ),
       
       menuItem(
-        "BoxPlots",
+        # BoxPlots 
+          "BoxPlots",
         tabName = "BoxPlots",
         icon = shiny::icon("line-chart")
       ),
@@ -89,12 +94,15 @@ ui <- dashboardPage(
       
       
       menuItem(
+        # Heatmap and stats
         "Heatmap And Statistics",
         tabName = "Heatmap",
         icon = shiny::icon("table")
       ),
-      
+      #  PCA
       menuItem("PCA", tabName = "PCA", icon = shiny::icon("braille")),
+     
+       # Download
       menuItem(
         "Download",
         tabName = "DownloadData",
@@ -106,19 +114,23 @@ ui <- dashboardPage(
       hr(),
       menuItem(
         "Paper",
-        tabName = "paper",
-        icon = shiny::icon("file-pdf-o")
-      )
-      ,
+         icon = shiny::icon("file-pdf-o"),
+        href = "http://openresearchsoftware.metajnl.com"),
       menuItem(
         "Source code",
         icon = icon("file-code-o"),
         href = "https://github.com/foocheung/adat"
       ),
       menuItem("Bug Reports", icon = icon("bug"),
-               href = "https://github.com/foocheung/adat/issues")
+               href = "https://github.com/foocheung/adat/issues"),
+      menuItem("How To Guide", icon = icon("file-pdf-o"),
+               href = "howto.pdf")
       
-    )
+    
+      
+      ),
+    HTML('<br><br><br><br>'),
+    HTML('<p><center>Further Help ? <br>Contact the developer at <font color="cyan"><br> foo.cheung @ nih . gov </font></center>')
     
   ),
   
@@ -148,7 +160,7 @@ ui <- dashboardPage(
           br(),
           br(),
           
-          
+          # Upload ADAT UI
           column(
             12,
             offset = 1,
@@ -177,6 +189,10 @@ ui <- dashboardPage(
           
           
         ),
+        
+        
+        # UI calls for sample filtering, boxplots, heatmaps,ttest and dawnload datasets
+        
         tabItem(tabName = "filter"),
         
         tabItem(tabName = "BoxPlots",
@@ -186,19 +202,12 @@ ui <- dashboardPage(
           
           
           uiOutput('filter_sample'),
-          ##actionButton("goButton", "Go!"),
           
-          
-          box(
-            title = "Heatmap",
-            width = 12,
-            d3heatmapOutput("heatmap"),
-            status = "success",
-            solidHeader = TRUE,
-            footer = "Hover for details. May take several seconds to load."
-          ),
+          uiOutput('hmap'),
           
           uiOutput('moreControls_stat'),
+          
+          
           box(
             width = 7,
             solidHeader = TRUE,
@@ -245,15 +254,18 @@ ui <- dashboardPage(
 
 
 
+
+
 shinyApp(
   ui,
   server = function(input, output) {
+  
+    
+    
+    # Hide sidebar until ADAT file is uploaded
     addClass(selector = "body", class = "sidebar-collapse")
-    
-    
-    
-    
-    
+
+    # iframes for youtube 
     
     output$frame <- renderUI({
       help1 <- tags$iframe(src = vidurl,
@@ -290,6 +302,7 @@ shinyApp(
     })
     
     
+    # read in files containing GO process and Disease ID <-> somamer mapping 
     gotable1 <- read_csv("./process", col_names =  TRUE)
     gotable <- read_csv("./disease", col_names =  TRUE)
     gotable2 <- rbind(gotable, gotable1)
@@ -306,6 +319,11 @@ shinyApp(
       
       
     })
+    
+    
+    
+    
+    # Parse ADAT file
     
     filedata <- reactive({
       req(input$file1)
@@ -366,8 +384,8 @@ shinyApp(
       
       c <- myData2 %>% collect()
       
-      d <- c[, !grepl("X\\.|^X$", colnames(c))]
-      e <- b[, !grepl("X\\.|^X$", colnames(b))]
+      d <- c[,!grepl("X\\.|^X$", colnames(c))]
+      e <- b[,!grepl("X\\.|^X$", colnames(b))]
       aa <- c(colnames(d), colnames(e))
       
       myData3a <-
@@ -388,7 +406,7 @@ shinyApp(
       length_col <- ncol(myData3)
       
       matrix_data <- myData3[, enterez_GS_col:length_col]
-      #rownames(matrix_data)<- (make.names(paste(myData3$SampleGroup,myData3$TimePoint,sep="_"),unique=TRUE))
+      
       rownames(matrix_data) <-
         (make.names(myData3$SampleId, unique = TRUE))
       
@@ -403,6 +421,45 @@ shinyApp(
       )
     })
     
+    
+    # Generat Heatmap
+    
+    output$hmap <- renderUI({
+      matrix_data <- filedata()$matrix_data
+      
+      if (nrow(matrix_data) * 25 < 400)
+      {
+        he = 400
+        
+      }
+      else {
+        he =  25 * nrow(matrix_data)
+        
+      }
+      
+      
+      tagList(
+        box(
+          title = "Heatmap",
+          width = 12,
+          d3heatmapOutput("heatmap", height = paste0(he, "px")),
+          status = "success",
+          solidHeader = TRUE,
+          footer = "Hover for details. May take several seconds to load."
+          
+          
+          
+          
+        )
+      )
+      
+      
+      
+    })
+    
+    
+    # Generate PCA page 
+    
     output$moreControls3 <- renderUI({
       matrix_data <- filedata()$matrix_data
       
@@ -410,12 +467,8 @@ shinyApp(
       
       myData3 <- filedata()$myData3
       
-      myData3 <- myData3[order(myData3$SampleId),]
+      myData3 <- myData3[order(myData3$SampleId), ]
       
-      
-      
-      
-      ################################
       
       tagList(
         fluidRow(
@@ -502,7 +555,6 @@ shinyApp(
               "mychooser3",
               "Available frobs",
               "Selected frobs",
-              #              unique(myData3$SampleGroup), c(), size = 5, multiple = TRUE
               myData3$SampleId,
               c(),
               size = 10,
@@ -535,19 +587,15 @@ shinyApp(
     
     
     
-    
+    # Generate t-test UI 
     
     output$moreControls_stat <- renderUI({
       req(input$file1)
-      ##  myData3 <-filedata()$myData3
-      # matrix_data <-filedata()$matrix_data
-      # matrix_data  <-selection()$samp_matrix_data
-      ## matrix_data<-selection()$go_samp_matrix_data
+    
       myData3 <- filedata()$myData3
-      #rownames(myData3) <-
-      #  (make.names(paste(myData3$SampleId, sep = "_"), unique = TRUE))
+    
       matrix_data <- selection()$go_samp_matrix_data
-      ## lo<<-input$lock
+      
       
       
       
@@ -555,7 +603,7 @@ shinyApp(
       if (length(input$mychooser$right) < 2)
         samp_myData3 <-
         myData3[grep(paste("", collapse = '|'), myData3$SampleId, ignore.case =
-                       TRUE), ]
+                       TRUE),]
       
       
       else if (input$rowlabel == "SampleId") {
@@ -567,7 +615,7 @@ shinyApp(
             paste0("^", input$mychooser$right, "$",  collapse = '|'),
             rownames(myData3),
             ignore.case = TRUE
-          ), ]
+          ),]
       }
       
       else if (input$rowlabel == "SampleGroup") {
@@ -582,21 +630,18 @@ shinyApp(
             paste0("^", input$mychooser$right, "$",  collapse = '|'),
             rownames(myData3),
             ignore.case = TRUE
-          ), ]
+          ),]
       }
       
       
       
       rnmat <- rownames(matrix_data)
       matrix_data <-
-        matrix_data[order(row.names(matrix_data)),]
+        matrix_data[order(row.names(matrix_data)), ]
       
       
       if (is.null(input$lock) || input$lock == 'FALSE') {
-        #  showModal(modalDialog(
-        ##    title = "Important message",
-        #    input$lock
-        #  ))
+   
         
         tagList(
           box(
@@ -625,10 +670,6 @@ shinyApp(
       
       
       else{
-        # showModal(modalDialog(
-        #    title = "Important message",
-        #   input$mychooser2$right
-        #  ))
         input$mychooser$right
         
         
@@ -665,7 +706,7 @@ shinyApp(
     
     
     
-    
+    # Help dialogue Upload ADAT
     
     observeEvent(input$show, {
       showModal(modalDialog(title = "Step1 Upload ADAT File",
@@ -676,6 +717,7 @@ shinyApp(
                             )))
     })
     
+    # Help dialogue Box Plots
     
     observeEvent(input$show2, {
       showModal(modalDialog(title = "Box Plots",
@@ -687,6 +729,8 @@ shinyApp(
     })
     
     
+    # Help dialogue Heatmap and Statistics
+    
     observeEvent(input$show3, {
       showModal(modalDialog(title = "Heatmap and Statistics",
                             tags$iframe(
@@ -696,6 +740,8 @@ shinyApp(
                             )))
     })
     
+    
+    # Help dialogue PCA 
     
     observeEvent(input$show4, {
       showModal(modalDialog(title = "PCA",
@@ -707,6 +753,7 @@ shinyApp(
     })
     
     
+    # Function to download data file
     
     output$downloadData2 <- downloadHandler(
       filename = function() {
@@ -717,11 +764,15 @@ shinyApp(
       }
     )
     
+    
+    
+   # Generate Heatmap and statistics page
+    
     output$filter_sample <- renderUI({
       myData3 <- filedata()$myData3
       matrix_data <- filedata()$matrix_data
       matrix_data <- matrix_data[, order(colnames(matrix_data))]
-      myData3 <- myData3[order(myData3$SampleId),]
+      myData3 <- myData3[order(myData3$SampleId), ]
       
       tagList(
         fluidRow(
@@ -746,11 +797,17 @@ shinyApp(
                 "SampleDescription"
               )
             ) ,
+            
+            
             checkboxInput("cluster", "Apply clustering"),
             checkboxInput("showcustomhm", "Predefined Sets/User Defined", TRUE),
             actionButton("goButton", "Go!"),
             actionButton("show3", "Help" , icon("question-circle"),
                          style = "color: #fff; background-color: #337ab7; border-color: #2e6da4")
+            
+            
+            
+            
           ) ,
           
           conditionalPanel(
@@ -829,7 +886,7 @@ shinyApp(
                   unique = TRUE
                 ),
                 c(),
-                size = 10,
+                size = 8,
                 multiple = TRUE
               )
             )
@@ -851,7 +908,7 @@ shinyApp(
                   unique = TRUE
                 ),
                 c(),
-                size = 10,
+                size = 8,
                 multiple = TRUE
               )
             )
@@ -873,23 +930,26 @@ shinyApp(
                   unique = TRUE
                 ),
                 c(),
-                size = 10,
+                size = 8,
                 multiple = TRUE
               )
             )
             
           )
-          
-          
-          
-          
-          
+         
           
         )
+        
+        
       )
+      
       
     })
     
+    
+    
+    
+    # t-test and Mann-Whitney calculations
     
     output$ttestout <- renderDataTable(ttest()$ttestmat,
                                        options = list(pageLength = 5))
@@ -905,13 +965,13 @@ shinyApp(
           paste(input$mychooser2$left, collapse = '|'),
           rownames(go_samp_matrix_data),
           ignore.case = TRUE
-        ), ]
+        ),]
       m2 <-
         go_samp_matrix_data[grep(
           paste(input$mychooser2$right, collapse = '|'),
           rownames(go_samp_matrix_data),
           ignore.case = TRUE
-        ), ]
+        ),]
       
       ttestmat1 <-
         sapply(seq(ncol(m1)), function(x)
@@ -937,7 +997,7 @@ shinyApp(
       
       
       
-      
+    #Generate statistics table  
       foo <-
         list(
           df2 = data_frame(ttestmat1),
@@ -961,7 +1021,7 @@ shinyApp(
       
     })
     
-    
+    # Parse out the user selection from Heatmap and Statistics page
     selection <- reactive({
       req(input$go_fun)
       
@@ -969,12 +1029,6 @@ shinyApp(
       enterez_GS_col <- filedata()$enterez_GS_col
       length_col <- filedata()$length_col
       
-      
-      #  myData3[grep(
-      #    paste0("^", input$mychooser1$right, "$",  collapse = '|'),
-      #    myData3$SampleId,
-      #    ignore.case = TRUE
-      #  ), ]
       
       if (input$rowlabel == "SampleId") {
         rownames(myData3) <-
@@ -987,7 +1041,7 @@ shinyApp(
             paste0("^", input$mychooser$right, "$",  collapse = '|'),
             rownames(myData3),
             ignore.case = TRUE
-          ), ]
+          ),]
       }
       else if (input$rowlabel == "SampleGroup") {
         rownames(myData3) <-
@@ -1001,7 +1055,7 @@ shinyApp(
             paste0("^", input$mychooser10$right, "$",  collapse = '|'),
             rownames(myData3),
             ignore.case = TRUE
-          ), ]
+          ),]
         
       }
       else if (input$rowlabel == "TimePoint") {
@@ -1015,7 +1069,7 @@ shinyApp(
             paste0("^", input$mychooser11$right, "$",  collapse = '|'),
             rownames(myData3),
             ignore.case = TRUE
-          ), ]
+          ),]
       } else if (input$rowlabel == "SampleDescription") {
         rownames(myData3) <-
           (make.names(
@@ -1028,7 +1082,7 @@ shinyApp(
             paste0("^", input$mychooser12$right, "$",  collapse = '|'),
             rownames(myData3),
             ignore.case = TRUE
-          ), ]
+          ),]
       }
       
       
@@ -1037,7 +1091,7 @@ shinyApp(
           (input$rowlabel == "SampleId"))
         samp_myData3 <-
         myData3[grep(paste("", collapse = '|'), myData3$SampleId, ignore.case =
-                       TRUE), ]
+                       TRUE),]
       
       
       if ((length(input$mychooser10$right) < 2) &
@@ -1046,13 +1100,13 @@ shinyApp(
         myData3[grep(paste("", collapse = '|'),
                      myData3$SampleGroup,
                      ignore.case =
-                       TRUE), ]
+                       TRUE),]
       
       if ((length(input$mychooser11$right) < 2) &
           (input$rowlabel == "TimePoint"))
         samp_myData3 <-
         myData3[grep(paste("", collapse = '|'), myData3$TimePoint, ignore.case =
-                       TRUE), ]
+                       TRUE),]
       
       if ((length(input$mychooser12$right) < 2) &
           (input$rowlabel == "SampleDescription"))
@@ -1060,7 +1114,7 @@ shinyApp(
         myData3[grep(paste("", collapse = '|'),
                      myData3$SampleDescription,
                      ignore.case =
-                       TRUE), ]
+                       TRUE),]
       
       
       enterez_GS_col <-
@@ -1071,8 +1125,6 @@ shinyApp(
       
       samp_matrix_data <- samp_myData3[, enterez_GS_col:length_col]
       
-      ############################GO
-      ## ttttt<<-samp_matrix_data
       
       
       goselected_i <- input$go_fun
@@ -1084,11 +1136,11 @@ shinyApp(
             paste0("^", input$mychooser66$right, "$",  collapse = '|'),
             colnames(samp_matrix_data),
             ignore.case = TRUE
-          ), ]
+          ),]
         
       }
       else if (goselected_i == 'All Proteins') {
-        go_samp_matrix_data <- samp_matrix_data[, -1]
+        go_samp_matrix_data <- samp_matrix_data[,-1]
         
       }
       else{
@@ -1102,7 +1154,7 @@ shinyApp(
       
       cnames <- colnames(go_samp_matrix_data)
       
-      ###ttt<<-go_samp_matrix_data
+     
       return(
         list(
           "cnames" = cnames,
@@ -1115,6 +1167,9 @@ shinyApp(
       )
       
     })
+    
+    
+    #Functions for t-test and wilcoxin test
     
     w <- function(x, y) {
       test <- wilcox.test(x, y, paired = FALSE)
@@ -1137,6 +1192,8 @@ shinyApp(
     
     
     
+    # Generate Box Plot page
+    
     output$moreControls2 <- renderUI({
       df <- filedata()$matrix_data
       myData3 <- filedata()$myData3
@@ -1156,7 +1213,7 @@ shinyApp(
                    })
       
       
-      myData3 <- myData3[order(myData3$SampleId),]
+      myData3 <- myData3[order(myData3$SampleId), ]
       
       tagList(fluidRow(
         width = 12,
@@ -1279,6 +1336,7 @@ shinyApp(
       
     })
     
+    # Plot the BoxPlot
     
     output$plot <- renderPlotly({
       myData3 <- filedata()$myData3
@@ -1289,14 +1347,14 @@ shinyApp(
       if (length(input$mychooser1$right) < 2)
         plot_myData3 <-
         myData3[grep(paste("", collapse = '|'), myData3$SampleId, ignore.case =
-                       TRUE), ]
+                       TRUE),]
       else{
         plot_myData3 <-
           myData3[grep(
             paste0("^", input$mychooser1$right, "$",  collapse = '|'),
             myData3$SampleId,
             ignore.case = TRUE
-          ), ]
+          ),]
         
       }
       
@@ -1402,6 +1460,7 @@ shinyApp(
             )
           ))     +
           gp +
+    
           theme(
             text = element_text(size = 10),
             axis.text.x = element_text(angle = 90, hjust = 1),
@@ -1469,7 +1528,7 @@ shinyApp(
     })
     
     
-    
+    # Parse out ADAT and generate Annotation table
     output$db <- DT::renderDataTable({
       myData3 <- filedata()
       
@@ -1511,8 +1570,8 @@ shinyApp(
       length_col <- ncol(myData3)
       ss <- p6.start
       
-      d <- c[, !grepl("X\\.|^X$", colnames(c))]
-      e <- b[, !grepl("X\\.|^X$", colnames(b))]
+      d <- c[,!grepl("X\\.|^X$", colnames(c))]
+      e <- b[,!grepl("X\\.|^X$", colnames(b))]
       
       
       
@@ -1535,12 +1594,11 @@ shinyApp(
       
     })
     
-    
+    #Render Heatmap
     output$heatmap <- renderD3heatmap({
       if (is.null(input$goButton))
         return()
-      
-      
+
       
       isolate({
         matrix_data <- selection()$go_samp_matrix_data
@@ -1563,6 +1621,7 @@ shinyApp(
         )
         
         
+        
       })
     })
     
@@ -1570,16 +1629,12 @@ shinyApp(
     
     
     
-    
+    #Parse out user requirements from PCA
     pca_selection <- reactive({
       myData3 <- filedata()$myData3
       enterez_GS_col <- filedata()$enterez_GS_col
       length_col <- filedata()$length_col
       matrix_data <- filedata()$matrix_data
-      
-      ###########Sample
-      ##Add in sampleids to rownames
-      
       
       
       rownames(myData3) <-
@@ -1589,7 +1644,7 @@ shinyApp(
       if (length(input$mychooser3$right) < 2)   {
         pca_samp_myData3 <-
           myData3[grep(paste("", collapse = '|'), myData3$SampleId, ignore.case =
-                         TRUE), ]
+                         TRUE),]
       }
       else{
         pca_samp_myData3 <-
@@ -1597,7 +1652,7 @@ shinyApp(
             paste0("^", input$mychooser3$right, "$", collapse = '|'),
             myData3$SampleId,
             ignore.case = TRUE
-          ), ]
+          ),]
         
         
       }
@@ -1612,10 +1667,7 @@ shinyApp(
       pca_samp_matrix_data <-
         pca_samp_myData3[, enterez_GS_col:length_col]
       
-      
-      
-      
-      ###GO
+   
       if (input$showcustom == 0) {
         chooser <- input$mychooser33$right
         
@@ -1624,7 +1676,7 @@ shinyApp(
             paste0("^", input$mychooser33$right, "$",  collapse = '|'),
             colnames(pca_samp_matrix_data),
             ignore.case = TRUE
-          ), ]
+          ),]
         
         
       }
@@ -1646,7 +1698,7 @@ shinyApp(
     })
     
     
-    
+    # Render PCA plots
     output$pca1 <- renderPlotly({
       h <- pca_selection()$h
       pca_samp_myData3 <- pca_selection()$pca_samp_myData3
@@ -1740,7 +1792,7 @@ shinyApp(
     
     
     
-    
+    # Generate Download dataset UI
     output$moreControls4 <- renderUI({
       df <- filedata()$matrix_data
       myData3 <- filedata()$myData3
@@ -1759,6 +1811,7 @@ shinyApp(
     })
     
     
+    #Process download files once user pressed button for download
     
     dload <- function() {
       matrix_data <- filedata()$myData3
