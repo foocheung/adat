@@ -12,10 +12,10 @@ This web app is written using the shiny framework, a package from RStudio that c
 
 # Getting Started
 ## Current Version 0.01 (July 2017)
-To access the current web application through a browser, visit [https://foocheung.shinyapps.io/adat_v01/](https://foocheung.shinyapps.io/adat_v01/)
+To access the current version of the web application through a browser, visit [https://foocheung.shinyapps.io/adat_v01/](https://foocheung.shinyapps.io/adat_v01/)
 
 ## MS Version (April 2017)
-To access the web application through a browser, visit [foocheung.shinyapps.io/adat](https://foocheung.shinyapps.io/adat/).
+To access the older MS version of the web application through a browser, visit [foocheung.shinyapps.io/adat](https://foocheung.shinyapps.io/adat/).
 Example data and video tutorials are available within the web tool link shown above.
 
 # Source Code
