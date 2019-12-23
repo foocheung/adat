@@ -29,12 +29,19 @@ Sci Rep. 2017; 7: 14248. Published online 2017 Oct 27. doi: 10.1038/s41598-017-1
 PMCID: PMC5660188
 </pre>
 # Getting Started
-## Current Version 0.01 (July 2017)
-To access the current version of the web application through a browser, visit [https://foocheung.shinyapps.io/adat_v01/](https://foocheung.shinyapps.io/adat_v01/)
+
+Current Version 0.011<br>
+https://adat.niaid.nih.gov/
+
+
+## Version 0.01 (July 2017)
+To access the current version of the web application through a browser, visit  <mark><strike>foocheung.shinyapps.io/adat_v01/</strike><br> </mark>
+(I am no longer allowed to host this on shinyapps.io)
 
 ## MS Version (April 2017)
-To access the older MS version of the web application through a browser, visit [foocheung.shinyapps.io/adat](https://foocheung.shinyapps.io/adat/).
-Example data and video tutorials are available within the web tool link shown above.
+To access the older MS version of the web application through a browser, visit <strike>foocheung.shinyapps.io/adat</strike>
+Example data and video tutorials are available within the web tool link shown above.<br>
+ <mark>(I am no longer allowed to host this on shinyapps.io) </mark>
 
 # Source Code
 This web tool is an [open source](http://opensource.org) project, and the source code is available at [https://github.com/foocheung/adat](https://github.com/foocheung/adat)
