@@ -13,6 +13,11 @@ This web app is written using the shiny framework, a package from RStudio that c
 # Citation
 Is Cited by the Following Articles:
 <pre>
+
+Highly multiplexed proteomic assessment of human bone marrow in acute myeloid leukemia
+Haydar Çelik, Katherine Lindblad, Bogdan Popescu, Gege Gui, Meghali Goswami, Janet Valdez, Christin DeStefano, Catherine Lai, Julie Thompson, Jack Ghannam, Giovanna Fantoni, Angélique Biancotto, Julián Candia, Foo Cheung, Gauthaman Sukumar, Clifton Dalgard, Richard Smith, Andre Larochelle, Laura Dillon, and Christopher Hourigan
+Blood Advances (In Press)
+
 Aptamer-based proteomics of serum and plasma in acquired aplastic anemia
 Valentina Giudice, Angélique Biancotto, Zhijie Wu, Foo Cheung, Julián Candia, Giovanna Fantoni, Sachiko Kajigaya, Olga Rios, Danielle Townsley, Xingmin Feng, Neal S. Young
 Exp Hematol. 2018 Dec; 68: 38–50. Published online 2018 Oct 9. doi: 10.1016/j.exphem.2018.09.008
