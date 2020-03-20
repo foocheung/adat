@@ -14,24 +14,40 @@ This web app is written using the shiny framework, a package from RStudio that c
 Is Cited by the Following Articles:
 <pre>
 
-Highly multiplexed proteomic assessment of human bone marrow in acute myeloid leukemia
-Haydar Çelik, Katherine Lindblad, Bogdan Popescu, Gege Gui, Meghali Goswami, Janet Valdez, Christin DeStefano, Catherine Lai, Julie Thompson, Jack Ghannam, Giovanna Fantoni, Angélique Biancotto, Julián Candia, Foo Cheung, Gauthaman Sukumar, Clifton Dalgard, Richard Smith, Andre Larochelle, Laura Dillon, and Christopher Hourigan
-Blood Advances (In Press)
+1: Apps R, Kotliarov Y, Cheung F, Han KL, Chen J, Biancotto A, Babyak AL, Zhou H,
+Shi R, Barnhart LA, Osgood SM, Belkaid Y, Holland SM, Tsang JS, Zerbe C.
+Multi-modal immune phenotyping of maternal peripheral blood in normal human
+pregnancy. JCI Insight. 2020 Mar 12. pii: 134838. doi:
+10.1172/jci.insight.134838. [Epub ahead of print] PubMed PMID: 32163376.
 
-Aptamer-based proteomics of serum and plasma in acquired aplastic anemia
-Valentina Giudice, Angélique Biancotto, Zhijie Wu, Foo Cheung, Julián Candia, Giovanna Fantoni, Sachiko Kajigaya, Olga Rios, Danielle Townsley, Xingmin Feng, Neal S. Young
-Exp Hematol. 2018 Dec; 68: 38–50. Published online 2018 Oct 9. doi: 10.1016/j.exphem.2018.09.008
-PMCID: PMC6748047
+2: Çelik H, Lindblad KE, Popescu B, Gui G, Goswami M, Valdez J, DeStefano C, Lai 
+C, Thompson J, Ghannam JY, Fantoni G, Biancotto A, Candia J, Cheung F, Sukumar G,
+Dalgard CL, Smith RH, Larochelle A, Dillon LW, Hourigan CS. Highly multiplexed
+proteomic assessment of human bone marrow in acute myeloid leukemia. Blood Adv.
+2020 Jan 28;4(2):367-379. doi: 10.1182/bloodadvances.2019001124. PubMed PMID:
+31985806; PubMed Central PMCID: PMC6988405.
 
-Plasma proteomic signature of age in healthy humans
-Toshiko Tanaka, Angelique Biancotto, Ruin Moaddel, Ann Zenobia Moore, Marta Gonzalez‐Freire, Miguel A. Aon, Julián Candia, Pingbo Zhang, Foo Cheung, Giovanna Fantoni, CHI consortium, Richard D. Semba, Luigi Ferrucci
-Aging Cell. 2018 Oct; 17(5): e12799. Published online 2018 Jul 11. doi: 10.1111/acel.12799
-PMCID: PMC6156492
 
-Assessment of Variability in the SOMAscan Assay
-Julián Candia, Foo Cheung, Yuri Kotliarov, Giovanna Fantoni, Brian Sellers, Trevor Griesman, Jinghe Huang, Sarah Stuccio, Adriana Zingone, Bríd M. Ryan, John S. Tsang, Angélique Biancotto
-Sci Rep. 2017; 7: 14248. Published online 2017 Oct 27. doi: 10.1038/s41598-017-14755-5
-PMCID: PMC5660188
+3: Giudice V, Biancotto A, Wu Z, Cheung F, Candia J, Fantoni G, Kajigaya S, Rios 
+O, Townsley D, Feng X, Young NS. Aptamer-based proteomics of serum and plasma in 
+acquired aplastic anemia. Exp Hematol. 2018 Dec;68:38-50. doi:
+10.1016/j.exphem.2018.09.008. Epub 2018 Oct 9. PubMed PMID: 30312735; PubMed
+Central PMCID: PMC6748047.
+
+
+4: Tanaka T, Biancotto A, Moaddel R, Moore AZ, Gonzalez-Freire M, Aon MA, Candia 
+J, Zhang P, Cheung F, Fantoni G; CHI consortium, Semba RD, Ferrucci L. Plasma
+proteomic signature of age in healthy humans. Aging Cell. 2018 Oct;17(5):e12799. 
+doi: 10.1111/acel.12799. Epub 2018 Jul 11. PubMed PMID: 29992704; PubMed Central 
+PMCID: PMC6156492.
+
+
+5: Candia J, Cheung F, Kotliarov Y, Fantoni G, Sellers B, Griesman T, Huang J,
+Stuccio S, Zingone A, Ryan BM, Tsang JS, Biancotto A. Assessment of Variability
+in the SOMAscan Assay. Sci Rep. 2017 Oct 27;7(1):14248. doi:
+10.1038/s41598-017-14755-5. PubMed PMID: 29079756; PubMed Central PMCID:
+PMC5660188.
+
 </pre>
 # Getting Started
 
