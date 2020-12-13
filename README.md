@@ -42,16 +42,17 @@ Nature Immunology. Expected to be published in early January 2021
 
 ## Current Version 0.011 (2019)<br>
 https://adat.niaid.nih.gov/
+https://foocheung.shinyapps.io/adat_v01
 
 
 ## Version 0.01 (July 2017)
-To access the current version of the web application through a browser, visit  <strike>foocheung.shinyapps.io/adat_v01/</strike><br> 
-(`Apologzies I am no longer allowed to host this on shinyapps.io`)
+To access the current version of the web application through a browser, visit  foocheung.shinyapps.io/adat_v01/<br> 
+
 
 ## MS Version (April 2017)
-To access the older MS version of the web application through a browser, visit <strike>foocheung.shinyapps.io/adat</strike>
+To access the older MS version of the web application through a browser, visit foocheung.shinyapps.io/adat
 Example data and video tutorials are available within the web tool link shown above.<br>
-(`Apologzies I am no longer allowed to host this on shinyapps.io`) 
+
 
 # Source Code
 This web tool is an [open source](http://opensource.org) project, and the source code is available at [https://github.com/foocheung/adat](https://github.com/foocheung/adat)
