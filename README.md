@@ -41,8 +41,6 @@ Nature Immunology. Expected to be published in early January 2021
 # Getting Started
 
 ## Current Version 0.011 (2019)<br>
-https://adat.niaid.nih.gov/<br> 
-https://foocheung.shinyapps.io/adat_v01
 
 
 ## Version 0.01 (July 2017)
