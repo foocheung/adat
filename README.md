@@ -13,30 +13,41 @@ This web app is written using the shiny framework, a package from RStudio that c
 # Citation
 Is Cited by the Following Articles:
 <pre>
-1) Assessment of Variability in the SOMAscan Assay, Scientific Reports 7(1),
+Assessment of Variability in the SOMAscan Assay, Scientific Reports 7(1),
 DOI: http://doi.org/10.1038/s41598-017-14755-5
 
-2) Aptamer-based proteomics of serum and plasma in acquired aplastic anemia, Experimental Hematology
-DOI: http://doi.org/10.1016/j.exphem.2018.09.008
-
-3) Plasma proteomic signature of age in healthy humans, Aging Cell 17(5),
+Plasma proteomic signature of age in healthy humans, Aging Cell 17(5),
 DOI: http://doi.org/10.1111/acel.12799
 
-4) Colchicine’s effects on metabolic and inflammatory molecules in adults with obesity and metabolic syndrome: results from a pilot randomized controlled trial, International Journal of Obesity
+Aptamer-based proteomics of serum and plasma in acquired aplastic anemia, Experimental Hematology
+DOI: http://doi.org/10.1016/j.exphem.2018.09.008
+
+Characterization of the plasma proteomic profile of frailty phenotype, GeroScience
+DOI: http://doi.org/10.1007/s11357-020-00288-9
+
+Colchicine’s effects on metabolic and inflammatory molecules in adults with obesity and metabolic syndrome: results from a pilot randomized controlled trial, International Journal of Obesity
 DOI: http://doi.org/10.1038/s41366-020-0598-3
 
-5) Highly multiplexed proteomic assessment of human bone marrow in acute myeloid leukemia, Blood Advances 4(2),
-DOI: http://doi.org/10.1182/bloodadvances.2019001124
-
-6) Multimodal immune phenotyping of maternal peripheral blood in normal human pregnancy, JCI Insight 5(7),
-DOI: http://doi.org/10.1172/jci.insight.134838
-
-7) Plasma proteomic signature of the risk of developing mobility disability: A 9‐year follow‐up, Aging Cell
+Plasma proteomic signature of the risk of developing mobility disability: A 9‐year follow‐up, Aging Cell
 DOI: http://doi.org/10.1111/acel.13132
 
-8) Broadly effective metabolic and immune recovery with C5 inhibition in CHAPLE disease
-Nature Immunology. Expected to be published in early January 2021
+Highly multiplexed proteomic assessment of human bone marrow in acute myeloid leukemia, Blood Advances 4(2),
+DOI: http://doi.org/10.1182/bloodadvances.2019001124
 
+Multimodal immune phenotyping of maternal peripheral blood in normal human pregnancy, JCI Insight 5(7),
+DOI: http://doi.org/10.1172/jci.insight.134838
+
+A Plasma Proteomic Signature of Skeletal Muscle Mitochondrial Function, International Journal of Molecular Sciences 21(24),
+DOI: http://doi.org/10.3390/ijms21249540
+
+Plasma proteomic biomarker signature of age predicts health and life span, eLife
+DOI: http://doi.org/10.7554/eLife.61073
+
+A replication-competent adenovirus-vectored influenza vaccine induces durable systemic and mucosal immunity, Journal of Clinical Investigation 131(5),
+DOI: http://doi.org/10.1172/JCI140794
+
+Broadly effective metabolic and immune recovery with C5 inhibition in CHAPLE disease, Nature Immunology
+DOI: http://doi.org/10.1038/s41590-020-00830-z
 </pre>
 # Getting Started
 
