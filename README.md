@@ -63,7 +63,7 @@ To access the older MS version of the web application through a browser, visit f
 Example data and video tutorials are available within the web tool link shown above.<br>
 
 
-# Source Code
+# Source Code (MS Version (April 2017))
 This web tool is an [open source](http://opensource.org) project, and the source code is available at [https://github.com/foocheung/adat](https://github.com/foocheung/adat)
 
 # License
