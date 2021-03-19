@@ -55,7 +55,7 @@ DOI: http://doi.org/10.1038/s41590-020-00830-z
 
 
 ## Version 0.01 (July 2017)
-To access the current version of the web application through a browser, visit  foocheung.shinyapps.io/adat_v01/<br> 
+ 
 
 
 ## MS Version (April 2017)
