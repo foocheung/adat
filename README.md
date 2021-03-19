@@ -59,8 +59,6 @@ DOI: http://doi.org/10.1038/s41590-020-00830-z
 
 
 ## MS Version (April 2017)
-To access the older MS version of the web application through a browser, visit foocheung.shinyapps.io/adat
-Example data and video tutorials are available within the web tool link shown above.<br>
 
 
 # Source Code (MS Version (April 2017))
