@@ -70,5 +70,4 @@ This web tool is an [open source](http://opensource.org) project, and the source
 This web tool is licensed under the [Apache](http://www.apache.org/licenses/LICENSE-2.0) licence. &copy; Foo Cheung (2017)
 
 
-<img src="https://raw.githubusercontent.com/foocheung/adat/master/Figure4.png">
 
